@@ -2,14 +2,13 @@
 This is a sample project which demonstrates how to create infinite lists 📋📋 with Paging 3 library in Jetpack Compose using modern Android Architecture Components(Kotlin, MVVM, Flow, Jetpack Compose, Paging 3 Library, Android Jetpack).
 
 ## About
-This sample application loads a list of movies from the [Tmdb Api](htTmdb Api](https://developers.themoviedb.org/3).
-tps://developers.themoviedb.org/3).
+This sample application loads a list of movies from the [Tmdb Api](https://developers.themoviedb.org/3).
 
 It loads the data from the internet with `Retofit` library as a `Movie` object, then the `Paging` 3 library converts the fetched data into `Flow<PagingData<Movie>>` 
 and updates the flow with new data when the end of the page is reached. The application then collects the flow of data then displays it into a list.
 
 ## Building the project ⚒🛠⛏
-The sample application uses the [Tmdb Api](Tmdb Api](https://developers.themoviedb.org/3) to load the list of movies. To successfully build the application 
+The sample application uses the [Tmdb Api](https://developers.themoviedb.org/3) to load the list of movies. To successfully build the application 
 you need to create a [api key](https://www.themoviedb.org/settings/api).
 
 Then you need to add the api key in `local.properties` file in your project root folder as shown below:
