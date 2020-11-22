@@ -17,12 +17,12 @@ val networkModule = module {
 
 fun apiService(
     retrofit: Retrofit
-) : MovieApi =
+): MovieApi =
     retrofit.create(MovieApi::class.java)
 
 fun retrofit(
     okHttpClient: OkHttpClient
-) : Retrofit =
+): Retrofit =
     Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .client(okHttpClient)
@@ -31,12 +31,12 @@ fun retrofit(
 
 fun okhttpClient(
     headerInterceptor: Interceptor
-) : OkHttpClient =
+): OkHttpClient =
     OkHttpClient.Builder()
         .addInterceptor(headerInterceptor)
         .build()
 
-fun headerInterceptor() : Interceptor =
+fun headerInterceptor(): Interceptor =
     Interceptor { chain ->
         val request = chain.request()
         val newUrl = request.url().newBuilder()

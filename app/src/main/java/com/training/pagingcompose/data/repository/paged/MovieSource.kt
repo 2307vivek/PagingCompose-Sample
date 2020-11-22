@@ -6,7 +6,7 @@ import com.training.pagingcompose.model.Movie
 
 class MovieSource(
     private val movieRepository: MovieRepository
-) : PagingSource<Int, Movie>(){
+) : PagingSource<Int, Movie>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
@@ -15,10 +15,10 @@ class MovieSource(
 
             LoadResult.Page(
                 data = movieListResponse.results,
-                prevKey = if (nextPage == 1) null else nextPage - 1 ,
+                prevKey = if (nextPage == 1) null else nextPage - 1,
                 nextKey = movieListResponse.page.plus(1)
             )
-        }catch (e: Exception){
+        } catch (e: Exception) {
             LoadResult.Error(e)
         }
     }

@@ -83,7 +83,6 @@ fun MovieItem(movie: Movie) {
     Row(
         modifier = Modifier
             .padding(start = 16.dp, top = 16.dp, end = 16.dp)
-            //.background(MaterialTheme.colors.primary)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically

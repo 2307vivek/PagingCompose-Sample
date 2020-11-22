@@ -9,5 +9,5 @@ interface MovieApi {
     @GET("3/movie/popular")
     suspend fun getPopularMovies(
         @Query("page") pageNumber: Int
-    ) : MovieListResponse
+    ): MovieListResponse
 }
