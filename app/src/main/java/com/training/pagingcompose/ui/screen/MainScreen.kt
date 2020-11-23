@@ -117,7 +117,7 @@ fun MovieItem(movie: Movie) {
         )
         MovieImage(
             BuildConfig.LARGE_IMAGE_URL + movie.backdrop_path,
-            modifier = Modifier.preferredSize(90.dp).padding(start = 8.dp)
+            modifier = Modifier.padding(start = 16.dp).preferredSize(90.dp)
         )
     }
 }
@@ -130,6 +130,7 @@ fun MovieImage(
     CoilImage(
         data = imageUrl,
         modifier = modifier,
+        fadeIn = true,
         contentScale = ContentScale.Crop,
         loading = {
             Image(vectorResource(id = R.drawable.ic_photo), alpha = 0.45f)
