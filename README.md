@@ -15,6 +15,9 @@ Then you need to add the api key in `local.properties` file in your project root
 
 ```TMDB_API_KEY = "your-api-key"```
 
+## Further readings
+- [Infinite Lists With Paging 3 in Jetpack Compose](https://proandroiddev.com/infinite-lists-with-paging-3-in-jetpack-compose-b095533aefe6)
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
