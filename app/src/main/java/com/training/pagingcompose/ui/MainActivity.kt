@@ -26,7 +26,7 @@ package com.training.pagingcompose.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.platform.setContent
+import androidx.activity.compose.setContent
 import com.training.pagingcompose.ui.screen.MainScreen
 import com.training.pagingcompose.ui.screen.MainViewModel
 import com.training.pagingcompose.ui.theme.PagingComposeTheme

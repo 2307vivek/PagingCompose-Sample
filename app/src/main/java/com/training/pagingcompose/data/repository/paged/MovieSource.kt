@@ -25,6 +25,7 @@
 package com.training.pagingcompose.data.repository.paged
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.training.pagingcompose.data.repository.MovieRepository
 import com.training.pagingcompose.model.Movie
 
@@ -45,5 +46,9 @@ class MovieSource(
         } catch (e: Exception) {
             LoadResult.Error(e)
         }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
+        return state.anchorPosition
     }
 }

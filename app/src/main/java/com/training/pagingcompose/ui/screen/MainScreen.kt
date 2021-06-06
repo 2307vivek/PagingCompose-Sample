@@ -31,6 +31,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -54,7 +55,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
                 title = { Text(text = "PopularMovies") }
             )
         },
-        bodyContent = {
+        content = {
             MovieList(movies = mainViewModel.movies)
         }
     )
@@ -133,10 +134,10 @@ fun MovieImage(
         fadeIn = true,
         contentScale = ContentScale.Crop,
         loading = {
-            Image(vectorResource(id = R.drawable.ic_photo), alpha = 0.45f)
+            Image(ImageVector.vectorResource(id = R.drawable.ic_photo), alpha = 0.45f)
         },
         error = {
-            Image(vectorResource(id = R.drawable.ic_broken_image), alpha = 0.45f)
+            Image(ImageVector.vectorResource(id = R.drawable.ic_broken_image), alpha = 0.45f)
         }
     )
 }
