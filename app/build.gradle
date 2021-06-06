@@ -31,10 +31,35 @@ plugins {
 def credentials = rootProject.file("local.properties")
 def credentialProperty = new Properties()
 credentialProperty.load(new FileInputStream(credentials))
+def android_builder_version = "4.0.1"
+
+ext {
+    android_builder_main_version = Integer.parseInt(android_builder_version.split("\\.")[0])
+    android_builder_mid_version = Integer.parseInt(android_builder_version.split("\\.")[1])
+}
 
 android {
     compileSdkVersion 30
-
+    buildToolsVersion "30.0.3"
+    this.rootProject.buildscript.configurations.classpath
+            .resolvedConfiguration
+            .firstLevelModuleDependencies.
+            each {
+                def name = it.name
+                if (name.contains('com.android.tools.build:gradle')) {
+                    def moduleVersion = it.moduleVersion
+                    if (moduleVersion.contains("-")) {
+                        def versionArray = moduleVersion.split("-")
+                        ext.android_builder_main_version = Integer.parseInt(versionArray[0])
+                        ext.android_builder_mid_version = Integer.parseInt(versionArray[1])
+                    } else {
+                        version = moduleVersion
+                        android_builder_version = moduleVersion
+                        ext.android_builder_main_version = Integer.parseInt(android_builder_version.split("\\.")[0])
+                        ext.android_builder_mid_version = Integer.parseInt(android_builder_version.split("\\.")[1])
+                    }
+                }
+            }
     defaultConfig {
         applicationId "com.training.pagingcompose"
         minSdkVersion 21
@@ -65,8 +90,10 @@ android {
         jvmTarget = '1.8'
         useIR = true
     }
-    buildFeatures {
-        compose true
+    if (ext.android_builder_main_version >= 7 || (ext.android_builder_main_version > 4 && ext.android_builder_mid_version > 1)) {
+        buildFeatures {
+            compose true
+        }
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
@@ -84,6 +111,24 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.2.1'
 
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    //koin
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+
+    if (android_builder_main_version < 7) {
+        add("kotlinCompilerPluginClasspath", "androidx.compose.compiler:compiler:$compose_version")
+    }
     // Compose
     implementation "androidx.appcompat:appcompat:$compose_appcompat_version"
     implementation "androidx.activity:activity-compose:$compose_activity_version"
@@ -94,19 +139,4 @@ dependencies {
     implementation "dev.chrisbanes.accompanist:accompanist-coil:$compose_utils_chrisbanes_coil"
     // Paging Compose
     implementation "androidx.paging:paging-compose:$paging_compose_version"
-
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
-    // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-
-    //koin
-    implementation "org.koin:koin-core:$koin_version"
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    implementation "org.koin:koin-androidx-scope:$koin_version"
 }
