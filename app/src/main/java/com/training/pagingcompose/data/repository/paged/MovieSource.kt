@@ -25,12 +25,17 @@
 package com.training.pagingcompose.data.repository.paged
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.training.pagingcompose.data.repository.MovieRepository
 import com.training.pagingcompose.model.Movie
 
 class MovieSource(
     private val movieRepository: MovieRepository
 ) : PagingSource<Int, Movie>() {
+
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
+        return null
+    }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
