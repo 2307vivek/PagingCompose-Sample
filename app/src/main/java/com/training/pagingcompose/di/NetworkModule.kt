@@ -63,7 +63,7 @@ fun okhttpClient(
 fun headerInterceptor(): Interceptor =
     Interceptor { chain ->
         val request = chain.request()
-        val newUrl = request.url().newBuilder()
+        val newUrl = request.url.newBuilder()
             .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
             .build()
 

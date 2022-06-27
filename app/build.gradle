@@ -33,12 +33,12 @@ def credentialProperty = new Properties()
 credentialProperty.load(new FileInputStream(credentials))
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.training.pagingcompose"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -58,46 +58,46 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
-        useIR = true
+        jvmTarget = '11'
+//        useIR = true
     }
     buildFeatures {
         compose true
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
-        kotlinCompilerVersion '1.4.10'
     }
 }
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
 
     // Compose
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.ui:ui-tooling:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha06'
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.activity:activity-compose:$activity_compose"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.0-rc02'
 
     // Paging Compose
-    implementation "androidx.paging:paging-compose:1.0.0-alpha02"
+    implementation "androidx.paging:paging-compose:1.0.0-alpha15"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // ViewModel and LiveData
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     //koin
     implementation "org.koin:koin-core:2.1.5"
@@ -105,9 +105,9 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:2.1.5"
     implementation "org.koin:koin-androidx-scope:2.1.5"
 
-    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.3.3.1"
+    implementation "io.coil-kt:coil-compose:2.1.0"
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
